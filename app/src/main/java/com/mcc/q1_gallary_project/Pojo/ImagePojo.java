@@ -9,6 +9,10 @@ public class ImagePojo {
     @Expose
     private String imagePath;
 
+    public ImagePojo(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     public String getImagePath() {
         return imagePath;
     }

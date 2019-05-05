@@ -1,11 +1,9 @@
 package com.mcc.q1_gallary_project;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -16,21 +14,14 @@ import android.widget.TextView;
 
 import com.mcc.q1_gallary_project.Adapter.ImageItemViewAdapter;
 import com.mcc.q1_gallary_project.Interface.ImageApi;
-import com.mcc.q1_gallary_project.Interface.QuoteOfTheDayRestService;
 import com.mcc.q1_gallary_project.Pojo.ImagePojo;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,12 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar graphprogressbar;
     private RecyclerView recyclerView;
     StaggeredGridLayoutManager stagaggeredGridLayoutManager;
-    private TextView textViewQuoteOfTheDay;
-    private Button buttonRetry;
-
     private static final String TAG = "MainActivity";
-    private QuoteOfTheDayRestService service;
-    private Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
 
-        //fetchImage();
+        Test();
+
+        // fetchImage();
     }
 
     public void fetchImage() {
@@ -93,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                  */
                 if (response.body() != null) {
                     Log.d("XXX", response.toString());
+                    //stuck here for no response
                    // ImagePojo imagePojo = (ImagePojo) response.body();
                 }
             }
@@ -104,5 +93,18 @@ public class MainActivity extends AppCompatActivity {
                 */
             }
         });
+    }
+
+    public void Test(){
+        ImagePojo imagePojo= new ImagePojo("https://homepages.cae.wisc.edu/~ece533/images/airplane.png");
+        itemViewList.add(imagePojo);
+        itemViewList.add(imagePojo);
+        itemViewList.add(imagePojo);
+        itemViewList.add(imagePojo);
+        itemViewList.add(imagePojo);
+        itemViewList.add(imagePojo);
+
+        imageItemViewAdapter.notifyDataSetChanged();
+
     }
 }
