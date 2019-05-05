@@ -1,5 +1,6 @@
 package com.mcc.q1_gallary_project;
 
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,20 +56,20 @@ public class MainActivity extends AppCompatActivity {
         stagaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, 1);
         recyclerView.setLayoutManager(stagaggeredGridLayoutManager);
         itemViewList = new ArrayList<>();
-
         imageItemViewAdapter = new ImageItemViewAdapter(itemViewList, this);
         imageItemViewAdapter.setOnItemClickListhener(new ImageItemViewAdapter.ClickListhener() {
             @Override
             public void ItemClick(View view, int position) {
-
-
+                Intent intent = new Intent(MainActivity.this,ImageViewActivity.class);
+                intent.putExtra(Constant.IMAGE_SRC,itemViewList.get(position).getImagePath());
+                startActivity(intent);
             }
         });
         recyclerView.setAdapter(imageItemViewAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
 
-        fetchImage();
+        //fetchImage();
     }
 
     public void fetchImage() {
