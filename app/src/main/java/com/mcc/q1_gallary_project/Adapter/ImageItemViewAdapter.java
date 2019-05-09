@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.mcc.q1_gallary_project.Pojo.ImagePojo;
+import com.mcc.q1_gallary_project.Pojo.Contentfilelist_;
 import com.mcc.q1_gallary_project.R;
 
 import java.util.List;
@@ -19,13 +19,13 @@ import java.util.List;
 
 public class ImageItemViewAdapter extends RecyclerView.Adapter<ImageItemViewAdapter.ViewHolder> {
 
-    private List<ImagePojo> items;
+    private List<Contentfilelist_> items;
     private int itemLayout;
     Context context;
     ClickListhener clickListhener;
     //for accepted 1 and rejected 2
 
-    public ImageItemViewAdapter(List<ImagePojo> items, Context context) {
+    public ImageItemViewAdapter(List<Contentfilelist_> items, Context context) {
 
         this.items = items;
         this.context = context;
@@ -45,11 +45,10 @@ public class ImageItemViewAdapter extends RecyclerView.Adapter<ImageItemViewAdap
     @Override
     public void onBindViewHolder(ImageItemViewAdapter.ViewHolder holder, int position) {
 
-        ImagePojo item= items.get(position);
+        Contentfilelist_ item= items.get(position);
 
         Glide.with(context)
-                .load(item.getImagePath())
-                .centerCrop()
+                .load(item.getIMG())
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(holder.imvItemViewImage);
 
